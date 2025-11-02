@@ -1,0 +1,414 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f5f5f5;
+}
+
+/* Navigation */
+.navbar {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.lab-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 2rem;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    font-weight: 500;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link.active {
+    background-color: rgba(255, 255, 255, 0.3);
+    font-weight: bold;
+}
+
+/* Main Content */
+.main-content {
+    min-height: calc(100vh - 200px);
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.content-wrapper {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+    color: #667eea;
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    border-bottom: 3px solid #667eea;
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    color: #764ba2;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+h4 {
+    color: #555;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Education Section */
+.education-section {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-left: 4px solid #667eea;
+    border-radius: 5px;
+}
+
+.education-section ul {
+    list-style: none;
+    padding-left: 1rem;
+}
+
+.education-section li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.education-section li:before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #667eea;
+    font-weight: bold;
+}
+
+/* Featured Research */
+.featured-research {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #f0f4ff;
+    border-radius: 5px;
+}
+
+.subsection {
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+}
+
+.link-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-weight: 500;
+}
+
+.link-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(102, 126, 234, 0.4);
+}
+
+/* Research Interests */
+.research-interests {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    background-color: #fff5f5;
+    border-radius: 5px;
+}
+
+.research-interests ol {
+    padding-left: 2rem;
+    margin-top: 1rem;
+}
+
+.research-interests li {
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+/* Contact Info */
+.contact-info {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    line-height: 2;
+}
+
+.contact-info p {
+    margin: 1rem 0;
+    font-size: 1.1rem;
+}
+
+.contact-info a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contact-info a:hover {
+    text-decoration: underline;
+}
+
+/* Image Container */
+.image-container {
+    margin: 1.5rem 0;
+    text-align: center;
+}
+
+.content-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    margin-bottom: 1rem;
+}
+
+.image-placeholder {
+    color: #999;
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
+/* Member Grid */
+.members-section {
+    margin: 2rem 0;
+}
+
+.member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+}
+
+.member-card {
+    background-color: #f9f9f9;
+    padding: 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.member-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.member-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+    border: 4px solid #667eea;
+}
+
+.member-card h4 {
+    color: #667eea;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+/* Publications */
+.publications-section {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+.year-dropdown {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border: 2px solid #667eea;
+    border-radius: 5px;
+    background-color: white;
+    color: #333;
+    cursor: pointer;
+    margin: 1rem 0;
+    font-family: inherit;
+}
+
+.year-dropdown:focus {
+    outline: none;
+    border-color: #764ba2;
+    box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+}
+
+.publications-list {
+    margin-top: 2rem;
+}
+
+.publication-item {
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: white;
+    border-left: 4px solid #667eea;
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.publication-item:hover {
+    transform: translateX(5px);
+}
+
+.publication-item a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.publication-item a:hover {
+    text-decoration: underline;
+}
+
+/* Job Status */
+.job-status {
+    padding: 2rem;
+    background-color: #fff5f5;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+}
+
+/* Placeholder Text */
+.placeholder-text {
+    color: #999;
+    font-style: italic;
+    padding: 2rem;
+    text-align: center;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+/* Research Focus */
+.research-focus-section {
+    padding: 1.5rem;
+    background-color: #f0f4ff;
+    border-radius: 5px;
+}
+
+/* News Section */
+.news-section {
+    padding: 1.5rem;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-menu {
+        margin-top: 1rem;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .lab-title {
+        margin-bottom: 1rem;
+    }
+
+    .content-wrapper {
+        padding: 1.5rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .member-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .member-image {
+        width: 150px;
+        height: 150px;
+    }
+}
+

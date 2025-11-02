@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Yilin Yoshida's Lab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: linear-gradient(135deg, #EF3340 0%, #CC2936 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .lab-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-right: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.3);
+            font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            min-height: calc(100vh - 200px);
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-wrapper {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #EF3340;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            border-bottom: 3px solid #EF3340;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #CC2936;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        h4 {
+            color: #555;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Education Section */
+        .education-section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-left: 4px solid #EF3340;
+            border-radius: 5px;
+        }
+
+        .education-section ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .education-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .education-section li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #EF3340;
+            font-weight: bold;
+        }
+
+        /* Featured Research */
+        .featured-research {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #fff0f0;
+            border-radius: 5px;
+        }
+
+        .subsection {
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 5px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .link-button {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #EF3340 0%, #CC2936 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-weight: 500;
+        }
+
+        .link-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(239, 51, 64, 0.4);
+        }
+
+        /* Research Interests */
+        .research-interests {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #fff5f5;
+            border-radius: 5px;
+        }
+
+        .research-interests ol {
+            padding-left: 2rem;
+            margin-top: 1rem;
+        }
+
+        .research-interests li {
+            padding: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            line-height: 1.6;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-info a {
+            color: #EF3340;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Image Container */
+        .image-container {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .content-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            margin-bottom: 1rem;
+        }
+
+        .image-placeholder {
+            color: #999;
+            font-style: italic;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        img.member-image,
+        img.content-image {
+            display: block;
+        }
+
+        img.member-image[style*="display: none"],
+        img.content-image[style*="display: none"] {
+            display: none !important;
+        }
+
+        /* Member Grid */
+        .members-section {
+            margin: 2rem 0;
+        }
+
+        .member-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .member-card {
+            background-color: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .member-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+            border: 4px solid #EF3340;
+        }
+
+        .member-card h4 {
+            color: #EF3340;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Publications */
+        .publications-section {
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .year-dropdown {
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            border: 2px solid #EF3340;
+            border-radius: 5px;
+            background-color: white;
+            color: #333;
+            cursor: pointer;
+            margin: 1rem 0;
+            font-family: inherit;
+        }
+
+        .year-dropdown:focus {
+            outline: none;
+            border-color: #CC2936;
+            box-shadow: 0 0 5px rgba(239, 51, 64, 0.3);
+        }
+
+        .publications-list {
+            margin-top: 2rem;
+        }
+
+        .publication-item {
+            padding: 1rem;
+            margin: 1rem 0;
+            background-color: white;
+            border-left: 4px solid #EF3340;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .publication-item:hover {
+            transform: translateX(5px);
+        }
+
+        .publication-item a {
+            color: #EF3340;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .publication-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* Job Status */
+        .job-status {
+            padding: 2rem;
+            background-color: #fff5f5;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #555;
+        }
+
+        /* Placeholder Text */
+        .placeholder-text {
+            color: #999;
+            font-style: italic;
+            padding: 2rem;
+            text-align: center;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        /* Research Focus */
+        .research-focus-section {
+            padding: 1.5rem;
+            background-color: #fff0f0;
+            border-radius: 5px;
+        }
+
+        /* News Section */
+        .news-section {
+            padding: 1.5rem;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-menu {
+                margin-top: 1rem;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .lab-title {
+                margin-bottom: 1rem;
+            }
+
+            .content-wrapper {
+                padding: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .member-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .member-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            /* Make image and education stack on mobile */
+            .content-wrapper > div[style*="display: flex"] {
+                flex-direction: column !important;
+            }
+
+            .content-image {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="lab-title">Dr. Yilin Yoshida's Lab</h1>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-link active" data-tab="home">Home</a></li>
+                <li><a href="#" class="nav-link" data-tab="contact">Contact Us</a></li>
+                <li><a href="#" class="nav-link" data-tab="news">News and Insights</a></li>
+                <li><a href="#" class="nav-link" data-tab="research">Research Focus</a></li>
+                <li><a href="#" class="nav-link" data-tab="jobs">Job Opportunity</a></li>
+                <li><a href="#" class="nav-link" data-tab="members">Lab Members</a></li>
+                <li><a href="#" class="nav-link" data-tab="publications">Publications</a></li>
+                <li><a href="#" class="nav-link" data-tab="activities">Lab Activities</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Tab -->
+        <section id="home" class="tab-content active">
+            <div class="content-wrapper">
+                <h2>Yilin Yoshida | PhD, MPH, FAHA</h2>
+                
+                <div style="display: flex; gap: 2rem; margin-bottom: 2rem; align-items: flex-start;">
+                    <div class="image-container" style="flex: 0 0 auto; margin: 0;">
+                        <img src="images/YY.jpg" alt="Dr. Yilin Yoshida" class="content-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" onload="this.nextElementSibling.style.display='none';">
+                        <p class="image-placeholder" style="display:none;">[Image placeholder - Dr. Yilin Yoshida]</p>
+                    </div>
+                    
+                    <div class="education-section" style="flex: 1; margin: 0;">
+                        <h3>Education</h3>
+                        <ul>
+                            <li>Post Doctoral Fellow, Chronic Disease Epidemiology, University of Missouri-Columbia School of Medicine, MO</li>
+                            <li>PhD, Behavioral and Community Health Sciences (major) and Epidemiology (minor), Louisiana State University School of Public Health, New Orleans, Louisiana</li>
+                            <li>MPH, Global Community Health Sciences, Tulane University School of Public Health and Tropical Medicine, New Orleans, LA</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <section class="featured-research">
+                    <h3>Featured Research</h3>
+                    <div class="subsection">
+                        <h4>Sex/gender-based research</h4>
+                        <p><a href="#" class="link-button">click HERE</a></p>
+                    </div>
+                    <div class="subsection">
+                        <h4>Women's health and well-being</h4>
+                        <p><a href="#" class="link-button">click HERE</a></p>
+                    </div>
+                </section>
+
+                <section class="research-interests">
+                    <h3>MAJOR RESEARCH INTERESTS</h3>
+                    <ol>
+                        <li>Diabetes epidemiology</li>
+                        <li>Cardiometabolic disease epidemiology</li>
+                        <li>Health disparities</li>
+                    </ol>
+                </section>
+            </div>
+        </section>
+
+        <!-- Contact Us Tab -->
+        <section id="contact" class="tab-content">
+            <div class="content-wrapper">
+                <h2>Contact Us</h2>
+                <div class="contact-info">
+                    <p><strong>Yilin Yoshida, Ph.D.</strong> | Assistant Professor of Medicine</p>
+                    <p>Deming Department of Medicine</p>
+                    <p>Tulane University School of Medicine</p>
+                    <p>Office: Murphy Building 710<br>131 S Robertson St, New Orleans, LA 70112</p>
+                    <p>Phone: 504-988-6271</p>
+                    <p>Email: <a href="mailto:yyoshida1@tulane.edu">yyoshida1@tulane.edu</a></p>
+                    <p>Link: <a href="https://scholar.google.com/citations?user=WyrziHQAAAAJ&hl=en&oi=sra" target="_blank">Google Scholar Profile</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- News and Insights Tab -->
+        <section id="news" class="tab-content">
+            <div class="content-wrapper">
+                <h2>News and Insights</h2>
+                <section class="news-section">
+                    <h3>Section 1: ADA 2025</h3>
+                    <div class="image-container">
+                        <img src="images/ada2025.jpg" alt="ADA 2025" class="content-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" onload="this.nextElementSibling.style.display='none';">
+                        <p class="image-placeholder" style="display:none;">[Image placeholder - ADA 2025]</p>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!-- Research Focus Tab -->
+        <section id="research" class="tab-content">
+            <div class="content-wrapper">
+                <h2>Research Focus</h2>
+                <section class="research-focus-section">
+                    <h3>Section 1: The Focus of Our Research</h3>
+                    <p class="placeholder-text">Research focus content will be displayed here.</p>
+                </section>
+            </div>
+        </section>
+
+        <!-- Job Opportunity Tab -->
+        <section id="jobs" class="tab-content">
+            <div class="content-wrapper">
+                <h2>Job Opportunities</h2>
+                <div class="job-status">
+                    <p>Currently, all the positions are filled.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lab Members Tab -->
+        <section id="members" class="tab-content">
+            <div class="content-wrapper">
+                <h2>Lab Members</h2>
+                
+                <section class="members-section">
+                    <h3>Postdoctoral</h3>
+                    <div class="member-grid">
+                        <div class="member-card">
+                            <div class="image-container">
+                                <img src="images/dr-lu.jpg" alt="Dr. You (Hugh) Lu" class="member-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" onload="this.nextElementSibling.style.display='none';">
+                                <p class="image-placeholder" style="display:none;">[Image placeholder - Dr. You (Hugh) Lu]</p>
+                            </div>
+                            <h4>Dr. You (Hugh) Lu</h4>
+                        </div>
+                        <div class="member-card">
+                            <div class="image-container">
+                                <img src="images/dr-zu.jpg" alt="Dr. Yuanhao Zu" class="member-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" onload="this.nextElementSibling.style.display='none';">
+                                <p class="image-placeholder" style="display:none;">[Image placeholder - Dr. Yuanhao Zu]</p>
+                            </div>
+                            <h4>Dr. Yuanhao Zu</h4>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="members-section">
+                    <h3>Graduate Student</h3>
+                    <div class="member-grid">
+                        <div class="member-card">
+                            <div class="image-container">
+                                <img src="images/dangting-li.jpg" alt="Dangting Li" class="member-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" onload="this.nextElementSibling.style.display='none';">
+                                <p class="image-placeholder" style="display:none;">[Image placeholder - Dangting Li]</p>
+                            </div>
+                            <h4>Dangting Li</h4>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </section>
+
+        <!-- Publications Tab -->
+        <section id="publications" class="tab-content">
+            <div class="content-wrapper">
+                <h2>Publications</h2>
+                <div class="publications-section">
+                    <label for="year-select">Select Year:</label>
+                    <select id="year-select" class="year-dropdown">
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                    </select>
+                    
+                    <div id="publications-list" class="publications-list">
+                        <!-- Publications will be dynamically loaded here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lab Activities Tab -->
+        <section id="activities" class="tab-content">
+            <div class="content-wrapper">
+                <h2>Lab Activities</h2>
+                <div class="activities-section">
+                    <p class="placeholder-text">Lab activities content will be displayed here.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Dr. Yilin Yoshida's Lab. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Tab Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            // Handle navigation clicks
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all links and tabs
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    tabContents.forEach(tab => tab.classList.remove('active'));
+
+                    // Add active class to clicked link
+                    this.classList.add('active');
+
+                    // Show corresponding tab
+                    const targetTab = this.getAttribute('data-tab');
+                    const tabToShow = document.getElementById(targetTab);
+                    if (tabToShow) {
+                        tabToShow.classList.add('active');
+                    }
+                });
+            });
+
+            // Publications dropdown functionality
+            const yearSelect = document.getElementById('year-select');
+            const publicationsList = document.getElementById('publications-list');
+            
+            // Sample publications data - replace with actual PDF links
+            const publications = {
+                '2025': [
+                    { title: 'Publication 2025', pdf: 'pdfs/2025/YY_2025_0.pdf' }
+                ],
+                '2024': [
+                    { title: 'Publication 2024', pdf: 'pdfs/2024/YY_2024_0.pdf' }
+                ],
+                '2023': [
+                    { title: 'Publication 2023', pdf: 'pdfs/2023/YY_2023_0.pdf' }
+                ],
+                '2022': [
+                    { title: 'Publication 2022', pdf: 'pdfs/2022/YY_2022_0.pdf' }
+                ]
+            };
+
+            // Function to display publications for selected year
+            function displayPublications(year) {
+                const yearPubs = publications[year] || [];
+                
+                if (yearPubs.length === 0) {
+                    publicationsList.innerHTML = '<p class="placeholder-text">No publications available for this year.</p>';
+                    return;
+                }
+
+                let html = '';
+                yearPubs.forEach((pub, index) => {
+                    html += `
+                        <div class="publication-item">
+                            <p><strong>${index + 1}.</strong> ${pub.title}</p>
+                            <p><a href="${pub.pdf}" target="_blank">Download PDF</a></p>
+                        </div>
+                    `;
+                });
+                
+                publicationsList.innerHTML = html;
+            }
+
+            // Initialize with default year (2025)
+            displayPublications('2025');
+
+            // Handle year selection change
+            if (yearSelect) {
+                yearSelect.addEventListener('change', function() {
+                    displayPublications(this.value);
+                });
+            }
+
+            // Handle image loading - show placeholder when image fails, hide when succeeds
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                // Hide placeholder initially if image exists
+                const placeholder = img.nextElementSibling;
+                if (placeholder && placeholder.classList.contains('image-placeholder')) {
+                    placeholder.style.display = 'none';
+                }
+                
+                // If image loads successfully, hide placeholder
+                img.addEventListener('load', function() {
+                    const placeholder = this.nextElementSibling;
+                    if (placeholder && placeholder.classList.contains('image-placeholder')) {
+                        placeholder.style.display = 'none';
+                    }
+                });
+                
+                // If image fails to load, show placeholder and hide image
+                img.addEventListener('error', function() {
+                    this.style.display = 'none';
+                    const placeholder = this.nextElementSibling;
+                    if (placeholder && placeholder.classList.contains('image-placeholder')) {
+                        placeholder.style.display = 'block';
+                    }
+                });
+                
+                // Check if image already failed (for cached failures)
+                if (!img.complete || img.naturalHeight === 0) {
+                    // Image hasn't loaded yet, wait a bit then check
+                    setTimeout(function() {
+                        if (!img.complete || img.naturalHeight === 0) {
+                            img.dispatchEvent(new Event('error'));
+                        }
+                    }, 100);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
